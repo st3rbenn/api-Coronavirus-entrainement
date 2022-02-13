@@ -4,22 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>API Coronavirus</title>
 </head>
-    <body>
+    <body class="row bg-light">
+
+        <div class="d-flex justify-content-center mt-5 pb-3 text-center"><h1>renseigne toi sur les stats du covid dans ton pays !</h1></div>
 
             <div class="d-grid justify-content-center gap-5">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput country" placeholder="Country">
-                    <label for="floatingInput">Country</label>
+                <div class="form-floating mb-3 text-white">
+                    <input type="text" class="form-control text-white bg-dark" id="country" placeholder="Country">
+                    <label for="floatingInput">insère ton pays</label>
+                    <button type="button" class="btn btn-primary bg-dark border-light" id="search">Rechercher</button>
                   </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h2>Résultat de recheche</h2>
-                        <ul>
-                            <li>Villes <span id="location"></span></li>
-                            <li></li>
-                            <li></li>
+                <div class="card text-white bg-dark">
+                    <h2 class="text-center p-4">Résultat de recheche</h2>
+                    <div class="card-body p-4">
+                        <ul class="list-group list-group-horizontal-xl">
+                            <li class="list-group-item text-center"><span id="location"></span></li>
+                            <li class="list-group-item text-center"><span id="Contamination"></span></li>
+                            <li class="list-group-item text-center"><span id="Morts"></span></li>
                         </ul>
                     </div>
                 </div>

@@ -1,6 +1,8 @@
 let country = document.querySelector("#country")
 let map = new Map;
 let search = document.querySelector("#search")
+
+
 function searchingResult(){
     let url = `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total?country=${country.value}`;
 
@@ -14,15 +16,11 @@ function searchingResult(){
         console.log(data)
         let mapped = map.set(data).entries().next().value;
         let resultMap = mapped[0].data;
-            document.querySelector("#location").textContent = `${resultMap.location}`
+            document.querySelector("#location").innerHTML = `${resultMap.location}`
             document.querySelector("#Contamination").innerHTML = `${resultMap.confirmed} Contaminés`;
             document.querySelector("#Morts").innerHTML = `${resultMap.deaths} Morts`;
 
     }))
 }
 
-
 search.addEventListener("click", searchingResult)
-
-
-

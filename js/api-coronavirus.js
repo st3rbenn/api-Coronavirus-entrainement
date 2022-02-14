@@ -49,6 +49,30 @@ function searchingResult(){
             document.querySelector("#Morts").innerHTML = `${resultMap.deaths} Morts`;
 
     }))
+    .catch(err => {
+        console.error(err);
+    });
+}
+document.querySelector("#search").addEventListener("click", searchingResult)
+
+
+
+function covidInfo() {
+    let url = `https://coronavirus-smartable.p.rapidapi.com/news/v1/FR/`;
+    fetch(url, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "coronavirus-smartable.p.rapidapi.com",
+                "x-rapidapi-key": "57d1b3c15dmsh08a19a1a3791ff7p1a5e59jsn0a60153793aa"
+            }
+        })
+        .then(response => response.json().then((data) => {
+            console.log(data)
+
+
+        }))
+        .catch(err => {
+            console.error(err);
+        });
 }
 
-document.querySelector("#search").addEventListener("click", searchingResult)

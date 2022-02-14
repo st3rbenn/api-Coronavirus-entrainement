@@ -32,17 +32,20 @@ function searchingResult(){
         let resultMap = mapped[0].data;
         console.log(resultMap)
         let lastChecked = resultMap.lastReported
+        console.log([lastChecked])
         let infoDisplay = [lastChecked].toString().split("T")
-        //date
+        //formatage de la date
         function date(){
            let date = infoDisplay[0].split("-");
            let dateDisplay = move(date, 0, 2);
            return move(dateDisplay, 0, 1).join("-")
         }
+        //formatage de l'heure
         function hours(){
             let hours = infoDisplay[1].split("+")[0].split(":").splice(0, 2).join("h")
             return hours
         }
+            document.querySelector("#cardList").classList.remove("visually-hidden")
             document.querySelector("#info").innerHTML = `Dernière mise à jour le <br>${date()} à ${hours()}`
             document.querySelector("#location").innerHTML = `${resultMap.location}`
             document.querySelector("#Contamination").innerHTML = `${resultMap.confirmed} Contaminés`;

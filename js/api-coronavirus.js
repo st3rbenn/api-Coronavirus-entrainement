@@ -1,7 +1,3 @@
-let country = document.querySelector("#country")
-let map = new Map;
-let search = document.querySelector("#search")
-
 function move(arr, old_index, new_index) {
     while (old_index < 0) {
         old_index += arr.length;
@@ -21,8 +17,10 @@ function move(arr, old_index, new_index) {
 
 
 function searchingResult(){
-    let url = `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total?country=${country.value}`;
-
+    let country = document.querySelector("#country").value
+    let map = new Map;
+    let url = `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total?country=${country}`;
+    console.log(url)
     fetch(url, {
         "method": "GET",
         "headers": {
@@ -35,7 +33,6 @@ function searchingResult(){
         console.log(resultMap)
         let lastChecked = resultMap.lastReported
         let infoDisplay = [lastChecked].toString().split("T")
-        console.log(infoDisplay)
         //date
         function date(){
            let date = infoDisplay[0].split("-");
@@ -43,11 +40,9 @@ function searchingResult(){
            return move(dateDisplay, 0, 1).join("-")
         }
         function hours(){
-            let hours = infoDisplay[1].split("+")
-            console.log(hours)
-            return hours[0].split(":").splice(0, 2).join("h")
-        }console.log(hours())
-
+            let hours = infoDisplay[1].split("+")[0].split(":").splice(0, 2).join("h")
+            return hours
+        }
             document.querySelector("#info").innerHTML = `Dernière mise à jour le <br>${date()} à ${hours()}`
             document.querySelector("#location").innerHTML = `${resultMap.location}`
             document.querySelector("#Contamination").innerHTML = `${resultMap.confirmed} Contaminés`;
@@ -56,4 +51,4 @@ function searchingResult(){
     }))
 }
 
-search.addEventListener("click", searchingResult)
+document.querySelector("#search").addEventListener("click", searchingResult)
